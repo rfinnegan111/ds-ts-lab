@@ -1,13 +1,13 @@
-import {Friend, Colleague } from './myTypes'
+import {Friend, Colleague, EmailContact } from './myTypes'
 
 import { friends, colleagues } from "./01-basics";
 
-/* function older(f: Friend) : string {
+function older(f: Friend) : string {
      f.age += 1
      return `${f.name} is now ${f.age}` 
 }
- */
-//console.log(older(friends[0]))
+
+console.log(older(friends[0]))
 
 // Find the colleague with the highest extension number.
 function highestExtension(cs: Colleague[]): Colleague {
@@ -45,3 +45,25 @@ function allOlder(fr: Friend[]) : String[] {
 
 
 console.log(allOlder(friends))
+
+function sortColleagues(
+  colleagues: Colleague[],
+  sorter: (c1: Colleague, c2: Colleague) => number
+): EmailContact[] {
+  const sorted = colleagues.sort(sorter); // Colleague[] inferred
+  const result: EmailContact[] = sorted.map((ce) => ({ name: ce.name, email: ce.contact.email }));
+  return result 
+}
+
+console.log(sortColleagues(colleagues.current, (a, b) => a.contact.extension - b.contact.extension));
+console.log(sortColleagues(colleagues.current, (a, b) => a.name.length - b.name.length));
+
+function findFriends(fr: Friend[], callback: (friend: any) => any) {
+  var found = new Array()
+  fr.forEach(f => {
+      if(callback(f)) {
+          found.push(f.name);
+      }
+  });
+  return found; 
+}
