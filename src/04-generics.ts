@@ -12,30 +12,6 @@ function sort<T>(sortArray: T[], criteria: (a: T, b: T) => number) : any {
     return sortArray.sort(criteria);
 }
 
-function overlap(
-    friends: Friend[],
-    colleagues: Colleague[]
-  ): any[] {
-    let outcome: any[] = [];
-    friends.reduce((o, fr) => {
-      const col = colleagues.find((c) => c.name === fr.name);
-      if (col) {
-        // overlap between colleages list and friend list
-        outcome.push({
-            name: col.name,
-            age: fr.age,
-            contact: {
-                email: col.contact.email,
-                extension: col.contact.extension
-            }
-        }
-        );
-      }
-      return o;
-    }, outcome);
-    return outcome;
-  }
-
 // Sort friends by age
 console.log(sort<Friend>(friends, (a, b) => a.age - b.age));
 // Sort colleagues by extension number
