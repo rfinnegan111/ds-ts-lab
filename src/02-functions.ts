@@ -73,3 +73,17 @@ function findFriends(fr: Friend[], callback: (friend: any) => any) {
   });
   return found; 
 }
+
+function addInterest(fr: Friend, interest: string) {
+  if(fr.interests == undefined) {
+      fr.interests = new Array(interest);
+  } 
+  if (fr.interests.includes(interest)) {
+      return fr.name + " : " + fr.interests + " - Interest exists."
+  } else {
+      fr.interests.push(interest);
+  }
+  return fr.name + " : " + fr.interests;
+}
+
+console.log(addInterest(friends[0], 'Politics'))
